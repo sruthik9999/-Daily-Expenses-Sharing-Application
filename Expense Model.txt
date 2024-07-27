@@ -1,0 +1,6 @@
+CREATE TABLE expenses (
+    id SERIAL PRIMARY KEY,
+    description TEXT,
+    total_amount DECIMAL(10, 2) NOT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);

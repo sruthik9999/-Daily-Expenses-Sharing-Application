@@ -1,0 +1,12 @@
+// GET /users/:id/expenses
+app.get('/users/:id/expenses', async (req, res) => {
+  const userId = req.params.id;
+  const result = await db.query(
+    `SELECT e.*, s.amount, s.percentage, s.split_type
+     FROM expenses e
+     JOIN splits s ON e.id = s.expense_id
+     WHERE s.user_id = $1`,
+    [userId]
+  );
+  res.json(result.rows);
+});

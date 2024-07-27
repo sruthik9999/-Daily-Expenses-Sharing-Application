@@ -1,0 +1,5 @@
+// GET /expenses
+app.get('/expenses', async (req, res) => {
+  const result = await db.query('SELECT * FROM expenses');
+  res.json(result.rows);
+});

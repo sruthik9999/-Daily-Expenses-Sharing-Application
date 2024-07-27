@@ -1,0 +1,18 @@
+// POST /users
+app.post('/users', [
+  check('name').notEmpty().isLength({ max: 100 }),
+  check('email').isEmail().isLength({ max: 100 }),
+  check('mobile_number').notEmpty().isLength({ max: 15 })
+], async (req, res) => {
+  const errors = validationResult(req);
+  if (!errors.isEmpty()) {
+    return res.status(400).json({ errors: errors.array() });
+  }
+
+  const { name, email, mobile_number } = req.body;
+  const result = await db.query(
+    'INSERT INTO users (name, email, mobile_number) VALUES ($1, $2, $3) RETURNING id',
+    [name, email, mobile_number]
+  );
+  res.status(201).json({ id: result.rows[0].id });
+});

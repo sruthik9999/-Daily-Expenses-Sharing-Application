@@ -1,0 +1,8 @@
+CREATE TABLE splits (
+    id SERIAL PRIMARY KEY,
+    expense_id INTEGER REFERENCES expenses(id),
+    user_id INTEGER REFERENCES users(id),
+    amount DECIMAL(10, 2),
+    percentage DECIMAL(5, 2),
+    split_type VARCHAR(10) -- 'equal', 'exact', 'percentage'
+);

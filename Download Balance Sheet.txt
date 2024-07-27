@@ -1,0 +1,27 @@
+ GET balance-sheetuser_id
+app.get('balance-sheetuser_id', async (req, res) = {
+  const userId = req.params.user_id;
+
+   Calculate balance sheet
+  const records = await calculateBalanceSheet(userId);
+
+   Generate CSV
+  const csvWriter = createCsvWriter({
+    path 'balance-sheet.csv',
+    header [
+      { id 'description', title 'Description' },
+      { id 'amount', title 'Amount' },
+      { id 'share', title 'Share' }
+    ]
+  });
+
+  csvWriter.writeRecords(records)
+    .then(() = {
+      res.download('balance-sheet.csv');
+    });
+});
+
+async function calculateBalanceSheet(userId) {
+   Implement balance sheet calculation logic here
+   Return an array of records for the CSV
+}

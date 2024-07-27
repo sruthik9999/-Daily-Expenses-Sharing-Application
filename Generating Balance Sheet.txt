@@ -1,0 +1,9 @@
+async function calculateBalanceSheet(userId) {
+  // Fetch all expenses and splits for the user
+  // Calculate the user’s share for each expense
+  // Format the results for CSV export
+  return [
+    { description: 'Expense 1', amount: 1000, share: 250 },
+    { description: 'Expense 2', amount: 2000, share: 500 }
+  ];
+}
